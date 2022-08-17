@@ -1,7 +1,6 @@
 import 'package:eyephoria_pranika_fyp/components/my_button.dart';
 import 'package:eyephoria_pranika_fyp/components/my_field.dart';
 import 'package:eyephoria_pranika_fyp/controller/authentication_controller.dart';
-import 'package:eyephoria_pranika_fyp/pages/home_page.dart';
 import 'package:eyephoria_pranika_fyp/pages/signin_page.dart';
 import 'package:eyephoria_pranika_fyp/utils/shared_preds.dart';
 import 'package:flutter/material.dart';
@@ -32,24 +31,24 @@ class _LoginPageState extends State<LoginPage> {
   final authentication = Get.put(Authentication());
   final AuthService authService = AuthService();
 
-  @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-    checkifAUthenticated();
-  }
+  // @override
+  // void initState() {
+  //   // TODO: implement initState
+  //   super.initState();
+  //   checkifAUthenticated();
+  // }
 
-  checkifAUthenticated() async {
-    var token = await authService.getToken();
-    if (token != null) {
-      Get.offAll(const HomePage());
-    }
-  }
+  // checkifAUthenticated() async {
+  //   var token = await authService.getToken();
+  //   if (token != null) {
+  //     Get.offAll(const HomePage());
+  //   }
+  // }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color.fromRGBO(255, 212, 241, 255),
+      backgroundColor: Color.fromARGB(255, 255, 255, 255),
       body: SafeArea(
         child: SingleChildScrollView(
           child: Form(

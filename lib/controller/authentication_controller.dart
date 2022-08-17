@@ -1,12 +1,11 @@
 import 'dart:convert';
 import 'package:eyephoria_pranika_fyp/utils/api.dart';
-import 'package:eyephoria_pranika_fyp/utils/shared_preds.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
 import 'package:http/http.dart' as http;
 
 import '../pages/home_page.dart';
+import '../utils/shared_preds.dart';
 
 class Authentication extends GetxController {
   final _token = ''.obs;

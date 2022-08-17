@@ -1,19 +1,50 @@
 import 'package:eyephoria_pranika_fyp/components/my_button.dart';
 import 'package:eyephoria_pranika_fyp/components/my_field.dart';
+import 'package:eyephoria_pranika_fyp/controller/authentication_controller.dart';
 import 'package:eyephoria_pranika_fyp/pages/home_page.dart';
 import 'package:eyephoria_pranika_fyp/pages/signin_page.dart';
+import 'package:eyephoria_pranika_fyp/utils/shared_preds.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class LoginPage extends StatelessWidget {
+class LoginPage extends StatefulWidget {
+  const LoginPage({Key? key}) : super(key: key);
+
+  @override
+  State<LoginPage> createState() => _LoginPageState();
+}
+
+class _LoginPageState extends State<LoginPage> {
   final emailController = TextEditingController();
+
   final passwordController = TextEditingController();
+
   final confirmPasswordController = TextEditingController();
+
   final usernameController = TextEditingController();
+
   final nameController = TextEditingController();
+
   final phoneController = TextEditingController();
+
   final formKey = GlobalKey<FormState>();
-  LoginPage({Key? key}) : super(key: key);
+
+  final authentication = Get.put(Authentication());
+  final AuthService authService = AuthService();
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    checkifAUthenticated();
+  }
+
+  checkifAUthenticated() async {
+    var token = await authService.getToken();
+    if (token != null) {
+      Get.offAll(const HomePage());
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -57,10 +88,11 @@ class LoginPage extends StatelessWidget {
                   MyButton(onTap: () {
                     var isFormValid = formKey.currentState!.validate();
                     if (isFormValid) {
-                      if (emailController.text == "admin@gmail.com" &&
-                          passwordController.text == "admin") {
-                        Get.to(HomePage());
-                      } else {}
+                      var data = {
+                        "email": emailController.text,
+                        "password": passwordController.text,
+                      };
+                      authentication.login(data);
                     }
                   }),
                   const Padding(

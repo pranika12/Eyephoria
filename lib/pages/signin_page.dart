@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 
 import '../components/my_button.dart';
 import '../components/my_field.dart';
+import '../controller/authentication_controller.dart';
 
 class SignInPage extends StatelessWidget {
   final emailController = TextEditingController();
@@ -13,6 +14,7 @@ class SignInPage extends StatelessWidget {
   final nameController = TextEditingController();
   final phoneController = TextEditingController();
   final formKey = GlobalKey<FormState>();
+  final authentication = Get.find<Authentication>();
   SignInPage({Key? key}) : super(key: key);
 
   @override
@@ -85,9 +87,14 @@ class SignInPage extends StatelessWidget {
                 MyButton(onTap: () {
                   var isFormValid = formKey.currentState!.validate();
                   if (isFormValid) {
-                    var data = {"email": emailController.text};
-                    // ignore: prefer_const_constructors
-                    Get.to(LoginPage());
+                    var data = {
+                      "email": emailController.text,
+                      "password": passwordController.text,
+                      "username": usernameController.text,
+                      "name": nameController.text,
+                      "phone": phoneController.text
+                    };
+                    authentication.SignUp(data);
                   }
                 }),
                 const Padding(

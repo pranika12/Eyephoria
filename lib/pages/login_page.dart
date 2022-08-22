@@ -15,21 +15,19 @@ class LoginPage extends StatefulWidget {
 
 class _LoginPageState extends State<LoginPage> {
   final emailController = TextEditingController();
-
   final passwordController = TextEditingController();
-
-  final confirmPasswordController = TextEditingController();
-
-  final usernameController = TextEditingController();
-
-  final nameController = TextEditingController();
-
-  final phoneController = TextEditingController();
 
   final formKey = GlobalKey<FormState>();
 
-  final authentication = Get.put(Authentication());
-  final AuthService authService = AuthService();
+  final authentication = Get.find<Authentication>();
+
+  // final confirmPasswordController = TextEditingController();
+  // final usernameController = TextEditingController();
+  // final nameController = TextEditingController();
+  // final phoneController = TextEditingController();
+
+  // final authentication = Get.put(Authentication());
+  // final AuthService authService = AuthService();
 
   // @override
   // void initState() {

@@ -1,14 +1,36 @@
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
+import 'package:eyephoria_pranika_fyp/controller/authentication_controller.dart';
+import 'package:eyephoria_pranika_fyp/pages/loader.dart';
+import 'package:eyephoria_pranika_fyp/pages/login_page.dart';
+import 'package:eyephoria_pranika_fyp/utils/shared_preds.dart';
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class FirstTab extends StatelessWidget {
-  const FirstTab({Key? key}) : super(key: key);
+  final AuthService authService = AuthService();
+  final authentication = Get.find<Authentication>();
+
+  FirstTab({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: const Text("Welcome to Eyephoria"),
+    return SafeArea(
+      child: Column(
+        children: [
+          const Text("Welcome to Eyephoria"),
+          Center(
+            child: ElevatedButton(
+                onPressed: () {
+                  Get.offAll(const LoginPage());
+                },
+                child: const Text("Logout")),
+          )
+        ],
+      ),
     );
+  }
+
+  logout() async {
+    await authentication.logout();
+    Get.offAll(const Loader());
   }
 }

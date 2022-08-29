@@ -90,6 +90,7 @@ class _LoginPageState extends State<LoginPage> {
                         "password": passwordController.text,
                       };
                       authentication.login(data);
+                      //Get.to(HomePage());
                     }
                   }),
                   const Padding(

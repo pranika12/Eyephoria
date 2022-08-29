@@ -58,15 +58,15 @@ class SignInPage extends StatelessWidget {
                   },
                 ),
                 MyField(
-                  text: "Phone",
-                  controller: phoneController,
+                  text: "Name",
+                  controller: nameController,
                   myValidator: (value) {
                     return null;
                   },
                 ),
                 MyField(
-                  text: "Name",
-                  controller: nameController,
+                  text: "Phone",
+                  controller: phoneController,
                   myValidator: (value) {
                     return null;
                   },

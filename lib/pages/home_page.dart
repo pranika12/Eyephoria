@@ -19,14 +19,14 @@ class _HomePageState extends State<HomePage> {
 
   final _map = <AppTab, TabBuilder>{
     AppTab.home: () {
-      return const FirstTab();
+      return FirstTab();
     },
     AppTab.appointment: () {
       return Column(
         children: const [],
       );
     },
-    AppTab.orderOpticals: () {
+    AppTab.orders: () {
       return Column(
         children: const [],
       );
@@ -66,7 +66,7 @@ class _HomePageState extends State<HomePage> {
             ),
             BottomNavigationBarItem(
               icon: Icon(Icons.remove_red_eye, color: Colors.amber),
-              label: 'Order Opticals',
+              label: 'Orders',
             ),
             BottomNavigationBarItem(
               icon: Icon(Icons.face, color: Colors.amber),
@@ -100,7 +100,7 @@ class AppTab extends TabType {
 
   static const home = AppTab._(0);
   static const appointment = AppTab._(1);
-  static const orderOpticals = AppTab._(2);
+  static const orders = AppTab._(2);
   static const profile = AppTab._(3);
 
   static AppTab byValue(int value) {
@@ -110,7 +110,7 @@ class AppTab extends TabType {
       case 1:
         return appointment;
       case 2:
-        return orderOpticals;
+        return orders;
       case 3:
         return profile;
       default:

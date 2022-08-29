@@ -23,6 +23,7 @@ class FirstTab extends StatelessWidget {
                   Get.offAll(const LoginPage());
                 },
                 child: const Text("Logout")),
+            //child: ElevatedButton (onPressed: () => logout(), child: const Text("Logout"))
           )
         ],
       ),

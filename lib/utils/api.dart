@@ -1,4 +1,4 @@
-const baseUrl = "http://192.168.56.1/dental_appointment";
+const baseUrl = "http://192.168.1.69/eyephoria_api_database";
 
 const LOGIN_API = "$baseUrl/login.php";
 const SIGNUP_API = "$baseUrl/singup.php";

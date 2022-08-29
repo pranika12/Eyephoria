@@ -13,6 +13,7 @@ class Loader extends StatefulWidget {
 
 class _LoaderState extends State<Loader> {
   final AuthService authService = AuthService();
+
   @override
   void initState() {
     // TODO: implement initState

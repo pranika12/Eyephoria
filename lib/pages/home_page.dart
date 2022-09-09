@@ -1,7 +1,11 @@
 import 'dart:async';
 
+import 'package:eyephoria_pranika_fyp/controller/authentication_controller.dart';
+import 'package:eyephoria_pranika_fyp/pages/loader.dart';
 import 'package:eyephoria_pranika_fyp/pages/tabs/first_tab.dart';
+import 'package:eyephoria_pranika_fyp/utils/shared_preds.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:tabnavigator/tabnavigator.dart';
 
 class HomePage extends StatefulWidget {
@@ -14,6 +18,7 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   final _tabController = StreamController<AppTab>.broadcast();
   final _initTab = AppTab.home;
+  final AuthService authService = AuthService();
 
   Stream<AppTab> get tabStream => _tabController.stream;
 
@@ -35,6 +40,20 @@ class _HomePageState extends State<HomePage> {
       return Column(
         children: const [],
       );
+    },
+    AppTab.info: () {
+      final authentication = Get.find<Authentication>();
+      return Column(
+        children: [
+          Container(
+              child: ElevatedButton(
+                  onPressed: () async {
+                    await authentication.logout();
+                    Get.offAll(const Loader());
+                  },
+                  child: const Text("Logout"))),
+        ],
+      );
     }
   };
 
@@ -45,6 +64,8 @@ class _HomePageState extends State<HomePage> {
       mappedTabs: _map,
     );
   }
+
+  logout() async {}
 
   Widget _buildbottomNavigationBar() {
     return StreamBuilder<AppTab>(
@@ -71,6 +92,10 @@ class _HomePageState extends State<HomePage> {
             BottomNavigationBarItem(
               icon: Icon(Icons.face, color: Colors.amber),
               label: 'Profile',
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.info),
+              label: 'Info',
             ),
           ],
           currentIndex: snapshot.hasData ? snapshot.data!.value : 0,
@@ -102,6 +127,7 @@ class AppTab extends TabType {
   static const appointment = AppTab._(1);
   static const orders = AppTab._(2);
   static const profile = AppTab._(3);
+  static const info = AppTab._(4);
 
   static AppTab byValue(int value) {
     switch (value) {
@@ -113,6 +139,8 @@ class AppTab extends TabType {
         return orders;
       case 3:
         return profile;
+      case 4:
+        return info;
       default:
         throw Exception('no tab for such value');
     }
